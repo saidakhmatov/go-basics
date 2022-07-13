@@ -64,7 +64,7 @@ func (z *Bigint) Set(num string) error {
 // function to subtract numbers then return result
 func Add(a, b Bigint) Bigint {
 
-	ba, bb := big.NewInt(0), big.NewInt(0)
+	ba, bb := big.NewInt(10), big.NewInt(10)
 
 	if _, ok := ba.SetString(a.value, 10); !ok {
 		panic("invalid numA")
@@ -73,7 +73,8 @@ func Add(a, b Bigint) Bigint {
 		panic("invalid numB")
 	}
 
-	sum := *big.NewInt(0).Add(ba, bb)
+	var sum big.Int
+	sum.Add(ba,bb)
 
 	return Bigint{
 		value: sum.String(),
@@ -82,15 +83,18 @@ func Add(a, b Bigint) Bigint {
 
 // function to add numbers then return result
 func Sub(a, b Bigint) Bigint {
-	ba, bb := big.NewInt(0), big.NewInt(0)
+
+	ba, bb := big.NewInt(10), big.NewInt(10)
+
 	if _, ok := ba.SetString(a.value, 10); !ok {
 		panic("invalid numA")
 	}
 	if _, ok := bb.SetString(b.value, 10); !ok {
 		panic("invalid numB")
 	}
-
-	diff := *big.NewInt(0).Sub(ba, bb)
+	
+	var diff big.Int
+	diff.Sub(ba,bb)
 
 	return Bigint{
 		value: diff.String(),
@@ -100,7 +104,8 @@ func Sub(a, b Bigint) Bigint {
 // function to return the result of multiplicaton of numbers
 func Multiply(a, b Bigint) Bigint {
 
-	ba, bb := big.NewInt(0), big.NewInt(0)
+	ba, bb := big.NewInt(10), big.NewInt(10)
+
 	if _, ok := ba.SetString(a.value, 10); !ok {
 		panic("invalid numA")
 	}
@@ -108,7 +113,8 @@ func Multiply(a, b Bigint) Bigint {
 		panic("invalid numB")
 	}
 
-	multp := *big.NewInt(0).Mul(ba, bb)
+	var multp big.Int
+	multp.Mul(ba,bb)
 
 	return Bigint{
 		value: multp.String(),
@@ -117,15 +123,18 @@ func Multiply(a, b Bigint) Bigint {
 
 // function to return the result of finding Mod of numbers
 func Mod(a, b Bigint) Bigint {
-	ba, bb := big.NewInt(0), big.NewInt(0)
+
+	ba, bb := big.NewInt(10), big.NewInt(10)
+	
 	if _, ok := ba.SetString(a.value, 10); !ok {
 		panic("invalid numA")
 	}
 	if _, ok := bb.SetString(b.value, 10); !ok {
 		panic("invalid numB")
 	}
-
-	mod := *big.NewInt(0).Mod(ba, bb)
+	
+	var mod big.Int
+	mod.Mod(ba,bb)
 
 	return Bigint{
 		value: mod.String(),

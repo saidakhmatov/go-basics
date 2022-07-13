@@ -16,14 +16,14 @@ func main() {
 	fmt.Println("a: ",a)
 	
 	// declaring number b
-	b, err := bigint.NewInt("100")
+	b, err := bigint.NewInt("11111111111111111111111111111111111111")
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("b: ",b)
 
 	// changing value of a with Set
-	err = a.Set("200")
+	err = a.Set("11111111111111111111111111111111111111")
 	if err != nil {
 		panic(err)
 	}
