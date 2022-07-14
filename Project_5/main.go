@@ -9,25 +9,19 @@ import (
 func main() {
 
 	// declaring number a
-	a, err := bigint.NewInt("+++0+00000-2034032")
+	a, err := bigint.NewInt("+++0+00000-2034032456465465465465654455645")
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("a: ",a)
 	
 	// declaring number b
-	b, err := bigint.NewInt("11111111111111111111111111111111111111")
+	b, err := bigint.NewInt("111111111111111111111111111")
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("b: ",b)
 
-	// changing value of a with Set
-	err = a.Set("11111111111111111111111111111111111111")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("a: ",a)
 
 	// adding a and b
 	c := bigint.Add(a, b)
@@ -46,7 +40,7 @@ func main() {
 	fmt.Println("Mod of a,b = ",f)
 
 	// finding absolute value of given number
-	abs, err := bigint.NewInt("-7")
+	abs, err := bigint.NewInt("-9")
 	if err != nil {
 		panic(err)
 	}
@@ -54,3 +48,4 @@ func main() {
 	fmt.Println("Abs val: ",re)
 	
 }
+

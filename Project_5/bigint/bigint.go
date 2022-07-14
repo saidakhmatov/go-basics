@@ -11,7 +11,7 @@ type Bigint struct {
 }
 
 // declare error
-var errorBadInput = errors.New("bad input")
+var ErrorBadInput = errors.New("bad input")
 
 // validate function
 func validate(s *string) error {
@@ -21,13 +21,13 @@ func validate(s *string) error {
 
 	// shows error if first letter/number of string is not +- or number
 	if !strings.Contains("+-"+allowed, string(str[0])) {
-		return errorBadInput
+		return ErrorBadInput
 	}
 
 	// shows error if string  contains letters or signs (starts checking from index 1)
 	for i := 1; i < len(str); i++ {
 		if !strings.Contains(allowed, string(str[i])) {
-			return errorBadInput
+			return ErrorBadInput
 		}
 
 	}
@@ -35,10 +35,10 @@ func validate(s *string) error {
 	return nil
 }
 
-// function to validate and return correct form of string 
+// function to validate and return correct form of string
 func NewInt(num string) (Bigint, error) {
 
-	// removes leading '0's and '+' signs from string 
+	// removes leading '0's and '+' signs from string
 	s := strings.TrimLeft(num, "0+")
 
 	if err := validate(&s); err != nil {
@@ -47,34 +47,16 @@ func NewInt(num string) (Bigint, error) {
 	return Bigint{value: s}, nil
 }
 
-// function to replace number
-func (z *Bigint) Set(num string) error {
-	
-	// removes leading '0's and '+' signs from string 
-	s := strings.TrimLeft(num, "0+")
-
-	if err := validate(&s); err != nil {
-		return err
-	}
-
-	z.value = s
-	return nil
-}
-
 // function to subtract numbers then return result
 func Add(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
-
-	if _, ok := ba.SetString(a.value, 10); !ok {
-		panic("invalid numA")
-	}
-	if _, ok := bb.SetString(b.value, 10); !ok {
-		panic("invalid numB")
-	}
+	ad, _ := ba.SetString(a.value,10)
+	
+	ab, _ := bb.SetString(b.value, 10)
 
 	var sum big.Int
-	sum.Add(ba,bb)
+	sum.Add(ad, ab)
 
 	return Bigint{
 		value: sum.String(),
@@ -86,15 +68,12 @@ func Sub(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
 
-	if _, ok := ba.SetString(a.value, 10); !ok {
-		panic("invalid numA")
-	}
-	if _, ok := bb.SetString(b.value, 10); !ok {
-		panic("invalid numB")
-	}
+	ad, _ := ba.SetString(a.value,10)
 	
+	ab, _ := bb.SetString(b.value, 10)
+
 	var diff big.Int
-	diff.Sub(ba,bb)
+	diff.Sub(ad, ab)
 
 	return Bigint{
 		value: diff.String(),
@@ -106,15 +85,12 @@ func Multiply(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
 
-	if _, ok := ba.SetString(a.value, 10); !ok {
-		panic("invalid numA")
-	}
-	if _, ok := bb.SetString(b.value, 10); !ok {
-		panic("invalid numB")
-	}
+	ad, _ := ba.SetString(a.value,10)
+	
+	ab, _ := bb.SetString(b.value, 10)
 
 	var multp big.Int
-	multp.Mul(ba,bb)
+	multp.Mul(ad, ab)
 
 	return Bigint{
 		value: multp.String(),
@@ -125,23 +101,20 @@ func Multiply(a, b Bigint) Bigint {
 func Mod(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
+
+	ad, _ := ba.SetString(a.value,10)
 	
-	if _, ok := ba.SetString(a.value, 10); !ok {
-		panic("invalid numA")
-	}
-	if _, ok := bb.SetString(b.value, 10); !ok {
-		panic("invalid numB")
-	}
-	
+	ab, _ := bb.SetString(b.value, 10)
+
 	var mod big.Int
-	mod.Mod(ba,bb)
+	mod.Mod(ad, ab)
 
 	return Bigint{
 		value: mod.String(),
 	}
 }
 
-// function to return absolute value of number 
+// function to return absolute value of number
 func (x *Bigint) Abs() Bigint {
 
 	val := x.value
@@ -154,4 +127,9 @@ func (x *Bigint) Abs() Bigint {
 	return Bigint{
 		value: val,
 	}
+}
+
+func (z *Bigint) Value() string {
+
+	return z.value
 }
