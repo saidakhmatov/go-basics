@@ -7,7 +7,6 @@ import (
 	"github.com/saidakhmatov/golang/Project_5/bigint"
 )
 
-
 func TestAddTD(t *testing.T) {
 
 	tests := []struct {
@@ -21,7 +20,6 @@ func TestAddTD(t *testing.T) {
 		{"test 3", "0000000000000000-111", "222", "111", nil},
 		{"test 4", "sdafa", "adfs", "", bigint.ErrorBadInput},
 		{"test 5", "7c89", "43+34", "", bigint.ErrorBadInput},
-
 	}
 
 	for _, tt := range tests {
@@ -66,7 +64,6 @@ func TestSubTD(t *testing.T) {
 		{"test 3", "0000000000000000-111", "222", "-333", nil},
 		{"test 4", "sdafa", "adfs", "", bigint.ErrorBadInput},
 		{"test 5", "7c89", "43+34", "", bigint.ErrorBadInput},
-
 	}
 
 	for _, tt := range tests {
@@ -111,7 +108,6 @@ func TestMultTD(t *testing.T) {
 		{"test 3", "0000000000000000-111", "222", "-24642", nil},
 		{"test 4", "sdafa", "adfs", "", bigint.ErrorBadInput},
 		{"test 5", "7c89", "43+34", "", bigint.ErrorBadInput},
-
 	}
 
 	for _, tt := range tests {
@@ -156,7 +152,6 @@ func TestModTD(t *testing.T) {
 		{"test 3", "00000000000000004654655464655", "89233", "18101", nil},
 		{"test 4", "sdafa", "adfs", "", bigint.ErrorBadInput},
 		{"test 5", "7c89", "43+34", "", bigint.ErrorBadInput},
-
 	}
 
 	for _, tt := range tests {
@@ -192,16 +187,15 @@ func TestAbsTD(t *testing.T) {
 
 	tests := []struct {
 		label string
-		a  string
+		a     string
 		want  string
 		err   error
 	}{
 		{"test 1", "+++++++++111", "111", nil},
 		{"test 2", "000-123", "123", nil},
-		{"test 3", "0000000000000000-111", "111",  nil},
-		{"test 4", "sdafa", "adfs",  bigint.ErrorBadInput},
-		{"test 5", "7c89", "43+34",  bigint.ErrorBadInput},
-
+		{"test 3", "0000000000000000-111", "111", nil},
+		{"test 4", "sdafa", "adfs", bigint.ErrorBadInput},
+		{"test 5", "7c89", "43+34", bigint.ErrorBadInput},
 	}
 
 	for _, tt := range tests {
@@ -222,7 +216,7 @@ func TestAbsTD(t *testing.T) {
 				}
 
 			} else {
-				
+
 				ans := a.Abs()
 				if ans.Value() != tt.want {
 					t.Errorf("test: %s, result: %s, expected: %s ", testcase, ans.Value(), tt.want)
@@ -231,4 +225,3 @@ func TestAbsTD(t *testing.T) {
 		})
 	}
 }
-

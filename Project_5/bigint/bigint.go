@@ -51,8 +51,8 @@ func NewInt(num string) (Bigint, error) {
 func Add(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
-	ad, _ := ba.SetString(a.value,10)
-	
+	ad, _ := ba.SetString(a.value, 10)
+
 	ab, _ := bb.SetString(b.value, 10)
 
 	var sum big.Int
@@ -68,8 +68,8 @@ func Sub(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
 
-	ad, _ := ba.SetString(a.value,10)
-	
+	ad, _ := ba.SetString(a.value, 10)
+
 	ab, _ := bb.SetString(b.value, 10)
 
 	var diff big.Int
@@ -85,8 +85,8 @@ func Multiply(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
 
-	ad, _ := ba.SetString(a.value,10)
-	
+	ad, _ := ba.SetString(a.value, 10)
+
 	ab, _ := bb.SetString(b.value, 10)
 
 	var multp big.Int
@@ -102,8 +102,8 @@ func Mod(a, b Bigint) Bigint {
 
 	ba, bb := big.NewInt(10), big.NewInt(10)
 
-	ad, _ := ba.SetString(a.value,10)
-	
+	ad, _ := ba.SetString(a.value, 10)
+
 	ab, _ := bb.SetString(b.value, 10)
 
 	var mod big.Int
